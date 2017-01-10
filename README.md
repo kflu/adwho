@@ -22,3 +22,14 @@ Get from [Github release](https://github.com/kflu/adwho/releases).
                             Search root, example: LDAP://OU=UserAccounts,DC=foo,DC=bar,DC=baidu,DC=com
         --help                display this list of options.
 
+## Examples
+
+Query directory entry that has `name` match `John Doe`:
+
+    $ adwho name "John Doe"
+    ... this prints out the result in JSON format
+
+Get the `name` of the entry with specified SMTP address:
+
+    $ adwho smtp "foo@example.com" -p name
+    "Foo bar"
