@@ -1,2 +1,2 @@
 # adwho
-A command line tool (and library) to conveniently query AD
+A command line tool (and library) to conveniently query AD.
