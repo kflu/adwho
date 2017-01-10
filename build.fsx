@@ -5,6 +5,7 @@ open Fake
 
 // Directories
 let buildDir  = "./build/"
+let mergeDir = "./build.merged/"
 let deployDir = "./deploy/"
 
 
@@ -33,10 +34,28 @@ Target "Deploy" (fun _ ->
     |> Zip buildDir (deployDir + "ApplicationName." + version + ".zip")
 )
 
+Target "Merge" (fun _ ->
+    FileUtils.mkdir mergeDir
+    Fake.ILMergeHelper.ILMerge 
+        (fun p -> {p with AllowWildcards = true; 
+                        Libraries = (!! "build/*.dll" -- "system.directory.dll");
+                        ToolPath = "./packages/dev/ilmerge/tools/ILMerge.exe";
+
+                        TargetKind = TargetKind.Exe})
+        (mergeDir @@ "adwho.exe")
+        (buildDir @@ "adwho.exe")
+)
+
+Target "All" DoNothing
+
 // Build order
 "Clean"
   ==> "Build"
   ==> "Deploy"
+  ==> "All"
+
+"Build" ==> "Merge" ==> "All"
+
 
 // start build
 RunTargetOrDefault "Build"
