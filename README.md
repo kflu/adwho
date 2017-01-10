@@ -1,6 +1,10 @@
 # adwho
 A command line tool (and library) to conveniently query AD.
 
+## Install
+
+Get from [Github release](https://github.com/kflu/adwho/releases).
+
 ## Usage
 
     USAGE: adwho.exe [--help] [--prop <prop>] [--multiple] [--searchroot <root>] <search> <string>
