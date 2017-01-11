@@ -1,6 +1,11 @@
 # adwho
 A command line tool (and library) to conveniently query AD.
 
+## Features
+
+- A single executable binary, no external dependencies.
+- Output JSON format, easy to automate.
+
 ## Install
 
 Get from [Github release](https://github.com/kflu/adwho/releases).
